@@ -5,615 +5,577 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Paper Folding — Ganita Prakash Grade 8</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f5f4f0;--surface:#fff;--surface2:#f0ede8;--border:#d8d4cc;
-  --text:#1a1814;--text2:#5a5650;--text3:#9a958e;
-  --blue:#2c5f9e;--red:#c0392b;--green:#1a7a4a;--orange:#e08020;
-  --font:'DM Sans',-apple-system,sans-serif;--mono:'DM Mono',ui-monospace,monospace;
+  --void:#04060a;
+  --deep:#080e18;
+  --space:#0d1520;
+  --nebula:#121d2e;
+  --hull:#1a2840;
+  --grid:#243350;
+  --line:#2e4268;
+  --star1:#6a9fd0;
+  --star2:#c8e0ff;
+  --blue:#4488dd;
+  --blue2:#66aaff;
+  --blue-glow:rgba(68,136,221,.2);
+  --cyan:#2adfc8;
+  --cyan-glow:rgba(42,223,200,.18);
+  --amber:#f5a623;
+  --amber-glow:rgba(245,166,35,.18);
+  --white:#e8f2ff;
+  --dim:#6a8aaa;
+  --dimmer:#3a5070;
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'Space Mono',ui-monospace,monospace;
 }
-body{font-family:var(--font);background:var(--bg);color:var(--text);
-  min-height:100vh;-webkit-font-smoothing:antialiased;padding:24px 16px 40px;line-height:1.5}
-.app{max-width:960px;margin:0 auto}
+html,body{width:100%;height:100%;overflow:hidden}
+body{
+  font-family:var(--mono);
+  background:var(--void);
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;
+  position:fixed;inset:0;
+}
 
-.head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-.head-ic{width:42px;height:42px;border-radius:10px;background:var(--surface2);
-  border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-weight:600;color:var(--text2);font-size:16px;flex-shrink:0}
-.lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:2px}
-.title{font-size:22px;font-weight:700;line-height:1.2}
+/* star field */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 8% 12%, rgba(200,224,255,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 23% 45%, rgba(200,224,255,.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 37% 8%, rgba(200,224,255,.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 52% 67%, rgba(200,224,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 66% 23%, rgba(200,224,255,.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 78% 51%, rgba(200,224,255,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 89% 15%, rgba(200,224,255,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 14% 78%, rgba(200,224,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 44% 88%, rgba(200,224,255,.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 93% 82%, rgba(200,224,255,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 61% 4%, rgba(200,224,255,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 3% 55%, rgba(200,224,255,.6) 0%, transparent 100%);
+  pointer-events:none;z-index:0;
+}
 
-/* Main layout: left panel + right scene */
-.main{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
-@media(max-width:720px){.main{grid-template-columns:1fr}}
+/* scanlines */
+body::after{
+  content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.06) 3px,rgba(0,0,0,.06) 4px);
+  pointer-events:none;z-index:1;
+}
 
-/* ══ LEFT PANEL ══════════════════════════════════════════ */
-.panel{display:flex;flex-direction:column;gap:12px}
+/* ── HEADER ── */
+.top{
+  position:relative;z-index:10;
+  display:flex;align-items:center;
+  border-bottom:1px solid var(--line);
+  background:var(--deep);
+  height:44px;flex-shrink:0;
+  padding:0 20px;gap:16px;
+}
+.top-badge{
+  display:flex;align-items:center;gap:7px;
+  font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dimmer);
+  border-right:1px solid var(--line);
+  padding-right:14px;
+}
+.tb-num{
+  width:18px;height:18px;border-radius:50%;
+  background:rgba(68,136,221,.25);border:1px solid var(--blue);
+  color:var(--blue2);font-size:9px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.top-title{font-family:var(--serif);font-size:16px;color:var(--white);flex:1;}
+.top-meta{font-size:9px;color:var(--dimmer);letter-spacing:.06em;display:flex;gap:14px}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:pulse 2.2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
 
-.card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:20px}
+/* ── MAIN LAYOUT ── */
+.main{
+  flex:1;display:grid;
+  grid-template-columns:300px 1fr;
+  overflow:hidden;min-height:0;
+  position:relative;z-index:5;
+}
 
-/* Fold counter */
-.fold-hero{text-align:center;padding:20px}
-.fold-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:8px}
-.fold-big{font-family:var(--mono);font-size:72px;font-weight:800;color:var(--blue);line-height:1;margin-bottom:4px}
-.fold-sub{font-size:12px;color:var(--text3);font-weight:600}
+/* ── LEFT ── */
+.left{
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;
+  background:var(--deep);
+  overflow:hidden;
+}
 
-/* Slider */
-.slider-wrap{padding:4px 16px 16px;display:flex;flex-direction:column;gap:10px}
-.slider-row{display:flex;align-items:center;gap:10px}
-.slider-label{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
-.fold-slider{flex:1;height:8px;accent-color:var(--blue);cursor:pointer;border-radius:4px}
-.quick-btns{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
-.qbtn{padding:5px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:var(--mono);
-  font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;background:var(--surface);transition:all .12s}
-.qbtn:hover{border-color:var(--blue);color:var(--blue)}
-.qbtn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.l-section{
+  padding:14px 16px;
+  border-bottom:1px solid var(--line);
+  flex-shrink:0;
+}
+.l-label{
+  font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dimmer);margin-bottom:10px;
+}
 
-/* Thickness cards */
-.thick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.thick-card{padding:12px;border-radius:9px;border:1.5px solid;text-align:center}
-.thick-card.exp{background:#2c5f9e0a;border-color:#9ab4dc}
-.thick-card.lin{background:#c0392b08;border-color:#f0a8a0}
-.tc-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.thick-card.exp .tc-lbl{color:var(--blue)}
-.thick-card.lin .tc-lbl{color:var(--red)}
-.tc-val{font-family:var(--mono);font-size:15px;font-weight:700;line-height:1.2}
-.thick-card.exp .tc-val{color:var(--blue)}
-.thick-card.lin .tc-val{color:var(--red)}
-.tc-ratio{text-align:center;font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:4px;grid-column:1/-1}
+/* fold counter hero */
+.fold-hero{
+  text-align:center;
+  padding:16px 0 10px;
+}
+.fh-num{
+  font-size:72px;font-weight:700;
+  color:var(--blue2);
+  text-shadow:0 0 40px var(--blue-glow),0 0 80px rgba(68,136,221,.15);
+  line-height:1;
+  font-family:var(--mono);
+  transition:color .3s;
+}
+.fh-num.moon{color:var(--amber);text-shadow:0 0 40px var(--amber-glow)}
+.fh-sub{font-size:11px;color:var(--dim);margin-top:6px}
 
-/* Paper fold animation */
-.fold-anim-wrap{display:flex;justify-content:center;align-items:center;
-  background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;
-  padding:16px;min-height:120px;overflow:hidden;position:relative}
-#fold-canvas{display:block}
+/* slider */
+.slider-wrap{padding:4px 0 10px}
+input[type=range]{
+  width:100%;height:4px;
+  -webkit-appearance:none;
+  background:var(--grid);
+  border-radius:2px;outline:none;cursor:pointer;
+  margin-bottom:10px;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:18px;height:18px;
+  border-radius:50%;
+  background:var(--blue);
+  box-shadow:0 0 14px var(--blue);
+  cursor:pointer;
+  transition:box-shadow .15s;
+}
+input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 22px var(--blue),0 0 8px #fff}
 
-/* Milestone badge */
-.milestone{padding:12px 14px;border-radius:9px;border:1.5px solid var(--border);
-  background:var(--surface2);font-size:13px;color:var(--text2);line-height:1.5;
-  transition:all .3s}
-.milestone.lit{background:#fff8f0;border-color:#f0d8c0;color:#6b4400}
-.milestone.lit strong{color:#4a2e00}
-.ms-icon{font-size:22px;margin-right:6px}
+/* quick jump buttons */
+.quick-row{display:flex;gap:5px;flex-wrap:wrap}
+.qjump{
+  flex:1;min-width:36px;
+  padding:5px 2px;
+  background:var(--nebula);
+  border:1px solid var(--line);
+  border-radius:4px;
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  color:var(--dim);cursor:pointer;
+  transition:all .14s;text-align:center;
+}
+.qjump:hover{border-color:var(--blue);color:var(--blue2)}
+.qjump.active{background:rgba(68,136,221,.15);border-color:var(--blue);color:var(--blue2);box-shadow:0 0 10px var(--blue-glow)}
 
-/* Formula */
-.formula-box{background:var(--surface2);border:1.5px solid var(--border);border-radius:9px;
-  padding:12px 14px;font-family:var(--mono);font-size:13px;color:var(--text);font-weight:600;
-  text-align:center;line-height:1.8}
-.formula-box .highlight{color:var(--blue);font-size:16px;font-weight:800}
+/* metrics */
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.metric{
+  background:var(--nebula);
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:9px 10px;
+}
+.m-label{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--dimmer);margin-bottom:4px}
+.m-val{font-size:14px;font-weight:700;color:var(--white);font-family:var(--mono);line-height:1.2;transition:color .3s}
+.m-val.exp{color:var(--blue2)}
+.m-val.lin{color:var(--dim)}
+.m-ratio{grid-column:1/-1;text-align:center;font-size:10px;color:var(--dim);margin-top:2px}
 
-/* ══ RIGHT SCENE ══════════════════════════════════════════ */
-.scene-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;
-  overflow:hidden;position:relative}
-.scene-header{padding:14px 18px;border-bottom:1.5px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between}
-.scene-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3)}
-.scene-tagline{font-size:13px;font-weight:600;color:var(--text);text-align:right}
+/* formula */
+.formula-strip{
+  background:rgba(68,136,221,.07);
+  border:1px solid rgba(68,136,221,.25);
+  border-radius:6px;
+  padding:10px 12px;
+  text-align:center;
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--blue2);
+  text-shadow:0 0 12px rgba(68,136,221,.5);
+  transition:all .3s;
+}
+.formula-strip.moon{
+  color:var(--amber);
+  text-shadow:0 0 12px var(--amber-glow);
+  border-color:rgba(245,166,35,.35);
+  background:rgba(245,166,35,.07);
+}
 
-#scene-canvas{display:block;width:100%}
+/* milestone */
+.milestone{
+  padding:10px 12px;
+  font-size:11px;color:var(--dim);
+  line-height:1.6;
+  font-family:var(--serif);
+  font-style:italic;
+  flex:1;overflow-y:auto;
+}
+.milestone strong{
+  font-style:normal;font-family:var(--mono);font-size:10px;
+  color:var(--cyan);text-shadow:0 0 8px var(--cyan-glow);
+}
 
-/* Comparison bar at bottom of scene */
-.compare-bar{padding:14px 18px;border-top:1.5px solid var(--border);
-  display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.cbar-item{display:flex;align-items:center;gap:8px}
-.cbar-swatch{width:12px;height:12px;border-radius:3px;flex-shrink:0}
-.cbar-text{font-size:12px;color:var(--text2);font-weight:600;font-family:var(--mono)}
+/* ── RIGHT: ALTITUDE CANVAS ── */
+.right{
+  display:flex;flex-direction:column;
+  overflow:hidden;background:var(--void);
+}
+.r-header{
+  padding:11px 18px;
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:10px;
+  flex-shrink:0;background:var(--deep);
+}
+.rh-title{font-size:11px;color:var(--dim);font-style:italic;font-family:var(--serif);flex:1;}
+.rh-val{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.canvas-wrap{flex:1;overflow:hidden;position:relative}
+#scene{display:block;width:100%;height:100%}
 </style>
 </head>
 <body>
-<div class="app">
-  <div class="head">
-    <div class="head-ic">2</div>
-    <div>
-      <div class="lbl">Chapter 2 · Power Play</div>
-      <div class="title">Paper Folding & Exponential Growth</div>
-    </div>
+
+<!-- TOP -->
+<div class="top">
+  <div class="top-badge">
+    <div class="tb-num">2</div>
+    CH·02 · POWER PLAY
   </div>
-
-  <div class="main">
-
-    <!-- ══ LEFT ══ -->
-    <div class="panel">
-
-      <div class="card" style="padding:0">
-        <div class="fold-hero">
-          <div class="fold-label">Number of folds</div>
-          <div class="fold-big" id="fold-big">0</div>
-          <div class="fold-sub">= 0.001 × 2<sup id="fold-sup">0</sup> cm</div>
-        </div>
-        <div class="slider-wrap">
-          <div class="slider-row">
-            <span class="slider-label">0</span>
-            <input type="range" class="fold-slider" id="fold-slider" min="0" max="46" value="0">
-            <span class="slider-label">46</span>
-          </div>
-          <div class="quick-btns">
-            <button class="qbtn" data-n="0">0</button>
-            <button class="qbtn" data-n="10">10</button>
-            <button class="qbtn" data-n="20">20</button>
-            <button class="qbtn" data-n="30">30</button>
-            <button class="qbtn" data-n="40">40</button>
-            <button class="qbtn" data-n="46">46</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" style="padding:14px">
-        <div class="thick-grid">
-          <div class="thick-card exp">
-            <div class="tc-lbl">Exponential</div>
-            <div class="tc-val" id="tc-exp">0.001 cm</div>
-          </div>
-          <div class="thick-card lin">
-            <div class="tc-lbl">Linear (×n)</div>
-            <div class="tc-val" id="tc-lin">0.001 cm</div>
-          </div>
-          <div class="tc-ratio" id="tc-ratio">ratio: 1×</div>
-        </div>
-      </div>
-
-      <div class="card" style="padding:14px">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:10px">Paper folding</div>
-        <div class="fold-anim-wrap">
-          <canvas id="fold-canvas" width="260" height="90"></canvas>
-        </div>
-      </div>
-
-      <div class="milestone" id="milestone-card">
-        <span class="ms-icon">📄</span>
-        <strong>Start:</strong> Thickness of a sheet of paper — 0.001 cm
-      </div>
-
-      <div class="formula-box" id="formula-box">
-        <div style="font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Thickness formula</div>
-        <div class="highlight" id="formula-main">0.001 × 2⁰ = 0.001 cm</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px" id="formula-sub">= 0.001 cm = starting paper</div>
-      </div>
-
-    </div>
-
-    <!-- ══ RIGHT: VERTICAL JOURNEY SCENE ══ -->
-    <div class="scene-card">
-      <div class="scene-header">
-        <span class="scene-title">Height journey (log scale)</span>
-        <span class="scene-tagline" id="scene-tagline">Drag slider →</span>
-      </div>
-      <canvas id="scene-canvas" height="560"></canvas>
-      <div class="compare-bar">
-        <div class="cbar-item">
-          <div class="cbar-swatch" style="background:#2c5f9e"></div>
-          <span class="cbar-text">Paper stack (exponential)</span>
-        </div>
-        <div class="cbar-item">
-          <div class="cbar-swatch" style="background:#c0392b;opacity:.7"></div>
-          <span class="cbar-text">Linear growth (for comparison)</span>
-        </div>
-      </div>
-    </div>
-
+  <div class="top-title">Paper Folding & Exponential Growth</div>
+  <div class="top-meta">
+    <span>GANITA PRAKASH GR·8</span>
+    <span style="display:flex;align-items:center;gap:5px"><span class="pulse"></span>LIVE</span>
   </div>
 </div>
 
+<!-- MAIN -->
+<div class="main">
+
+  <!-- LEFT -->
+  <div class="left">
+    <div class="l-section">
+      <div class="l-label">Folds</div>
+      <div class="fold-hero">
+        <div class="fh-num" id="fh-num">0</div>
+        <div class="fh-sub">0.001 × 2<sup id="fh-sup">0</sup> cm</div>
+      </div>
+      <div class="slider-wrap">
+        <input type="range" id="fold-sl" min="0" max="46" value="0">
+        <div class="quick-row" id="quick-row">
+          <button class="qjump active" data-n="0">0</button>
+          <button class="qjump" data-n="10">10</button>
+          <button class="qjump" data-n="20">20</button>
+          <button class="qjump" data-n="30">30</button>
+          <button class="qjump" data-n="40">40</button>
+          <button class="qjump" data-n="46">46 🌙</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="l-section">
+      <div class="l-label">Thickness</div>
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="m-label">Exponential 2ⁿ</div>
+          <div class="m-val exp" id="m-exp">0.001 cm</div>
+        </div>
+        <div class="metric">
+          <div class="m-label">Linear ×n</div>
+          <div class="m-val lin" id="m-lin">0.001 cm</div>
+        </div>
+        <div class="m-ratio" id="m-ratio">ratio: 1×</div>
+      </div>
+    </div>
+
+    <div class="l-section">
+      <div class="formula-strip" id="formula-strip">0.001 × 2⁰ = 0.001 cm</div>
+    </div>
+
+    <div class="milestone" id="milestone">
+      <strong>Fold 0</strong> — A single sheet of paper, 0.001 cm thick. 46 folds away from the Moon.
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+    <div class="r-header">
+      <div class="rh-title">Altitude journey — log scale, from paper to Moon</div>
+      <div class="rh-val" id="rh-val">drag slider to begin</div>
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="scene"></canvas>
+    </div>
+  </div>
+
+</div>
+
 <script>
-// ═══════════════════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════════════════
-const PAPER_CM = 0.001;
+const PAPER = 0.001;
 
-const LANDMARKS = [
-  {fold:0,   label:'Paper sheet',       icon:'📄', cmApprox:0.001,   color:'#9a958e'},
-  {fold:4,   label:'~1 mm',             icon:'📏', cmApprox:0.016,   color:'#7a5cb0'},
-  {fold:10,  label:'Your finger ~1 cm', icon:'👆', cmApprox:1,       color:'#2c5f9e'},
-  {fold:14,  label:'Textbook ~16 cm',   icon:'📚', cmApprox:16,      color:'#1a7a4a'},
-  {fold:17,  label:'Door height ~1.3 m',icon:'🚪', cmApprox:130,     color:'#e08020'},
-  {fold:20,  label:'3-storey building', icon:'🏢', cmApprox:1000,    color:'#c0392b'},
-  {fold:26,  label:'Burj Khalifa 830 m',icon:'🏗️', cmApprox:67000,   color:'#2c5f9e'},
-  {fold:30,  label:'Plane cruising alt',icon:'✈️', cmApprox:1070000, color:'#7a5cb0'},
-  {fold:40,  label:'Earth diameter',    icon:'🌍', cmApprox:1.1e9,   color:'#1a7a4a'},
-  {fold:46,  label:'Moon & back!',      icon:'🌙', cmApprox:7.0e10,  color:'#e08020'},
-];
+function sup(n){
+  return String(n).split('').map(c=>('⁰¹²³⁴⁵⁶⁷⁸⁹'[+c]||c)).join('');
+}
 
-function thickness(n){ return PAPER_CM * Math.pow(2, n); }
+function thick(n){ return PAPER * Math.pow(2, n); }
 
-function formatThick(cm){
+function fmt(cm){
   if(cm < 0.01)   return (cm*10).toFixed(4)+' mm';
   if(cm < 1)      return cm.toFixed(3)+' cm';
   if(cm < 100)    return cm.toFixed(2)+' cm';
-  if(cm < 100000) return (cm/100).toFixed(1)+' m';
-  if(cm < 1e8)    return (cm/100000).toFixed(0)+' km';
+  if(cm < 1e5)    return (cm/100).toFixed(1)+' m';
+  if(cm < 1e8)    return (cm/1e5).toFixed(0)+' km';
   if(cm < 1e11)   return (cm/1e8).toFixed(1)+'×10⁸ km';
-  return (cm/1e13).toFixed(1)+'×10¹⁰ km';
+  return (cm/1e10).toFixed(1)+'×10¹⁰ km';
 }
 
-function superStr(n){
-  const s='⁰¹²³⁴⁵⁶⁷⁸⁹';
-  return String(n).split('').map(d=>s[+d]||d).join('');
-}
+const LAYERS = [
+  {cm:0.001,   label:'Paper',           icon:'📄', color:'rgba(100,160,220,.9)'},
+  {cm:0.016,   label:'1 mm',            icon:'📏', color:'rgba(100,200,180,.9)'},
+  {cm:1,       label:'~Fingertip',      icon:'👆', color:'rgba(120,180,100,.9)'},
+  {cm:16,      label:'Textbook',        icon:'📚', color:'rgba(180,160,80,.9)'},
+  {cm:130,     label:'Door height',     icon:'🚪', color:'rgba(200,130,60,.9)'},
+  {cm:1000,    label:'10-storey bldg',  icon:'🏢', color:'rgba(200,80,80,.9)'},
+  {cm:88000,   label:'Burj Khalifa',    icon:'🏗️', color:'rgba(170,80,200,.9)'},
+  {cm:1.1e6,   label:'Cruising altitude',icon:'✈️', color:'rgba(100,140,220,.9)'},
+  {cm:1.28e9,  label:'Earth diameter',  icon:'🌍', color:'rgba(60,140,200,.9)'},
+  {cm:3.84e10, label:'Moon distance',   icon:'🌙', color:'rgba(240,200,80,.9)'},
+];
 
-// ═══════════════════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════════════════
+const LOG_MIN = Math.log2(PAPER * 0.5);
+const LOG_MAX = Math.log2(4.5e10);
+
 let folds = 0;
+const cvs = document.getElementById('scene');
+const ctx = cvs.getContext('2d');
+const PR = Math.min(window.devicePixelRatio||1, 2);
 
-// ═══════════════════════════════════════════════════════
-// SCENE CANVAS — vertical journey
-// ═══════════════════════════════════════════════════════
-const sceneCanvas = document.getElementById('scene-canvas');
-const sctx = sceneCanvas.getContext('2d');
-const sPR = window.devicePixelRatio || 1;
-
-function resizeScene(){
-  const W = sceneCanvas.parentElement.clientWidth;
-  const H = 560;
-  sceneCanvas.style.width = W + 'px';
-  sceneCanvas.style.height = H + 'px';
-  sceneCanvas.width = W * sPR;
-  sceneCanvas.height = H * sPR;
-  sctx.resetTransform();
-  sctx.scale(sPR, sPR);
-  drawScene();
+function resizeCvs(){
+  const wrap = cvs.parentElement;
+  cvs.width = wrap.clientWidth * PR;
+  cvs.height = wrap.clientHeight * PR;
+  cvs.style.width = wrap.clientWidth + 'px';
+  cvs.style.height = wrap.clientHeight + 'px';
+  ctx.resetTransform();
+  ctx.scale(PR, PR);
+  draw();
 }
 
-// Log scale: map log(thickness) to y position on canvas
-// min = log2(0.001) ≈ -10, max = log2(7e10) ≈ 36.2
-const LOG_MIN = Math.log2(0.0008);
-const LOG_MAX = Math.log2(7.5e10);
-
-function logToY(cm, canvasH, padTop, padBot){
-  const logV = Math.log2(Math.max(cm, 1e-10));
-  const t = (logV - LOG_MIN) / (LOG_MAX - LOG_MIN);
-  return padTop + (1-t) * (canvasH - padTop - padBot);
+function eToY(cm, H, pT, pB){
+  const t = (Math.log2(Math.max(cm, 1e-5)) - LOG_MIN) / (LOG_MAX - LOG_MIN);
+  return pT + (1-t) * (H - pT - pB);
 }
 
-function drawScene(){
-  const W = sceneCanvas.clientWidth;
-  const H = sceneCanvas.clientHeight;
-  sctx.clearRect(0,0,W,H);
+function draw(){
+  const W = cvs.clientWidth, H = cvs.clientHeight;
+  ctx.clearRect(0,0,W,H);
 
-  const PAD_TOP = 30, PAD_BOT = 40, PAD_LEFT = 60, PAD_RIGHT = 20;
-  const plotH = H - PAD_TOP - PAD_BOT;
-  const plotW = W - PAD_LEFT - PAD_RIGHT;
+  const PT=24, PB=30, PL=130, PR2=18;
+  const plotH = H-PT-PB;
 
-  // Sky gradient background
-  const skyGrad = sctx.createLinearGradient(0,0,0,H);
-  skyGrad.addColorStop(0, '#0a0a1a');   // space
-  skyGrad.addColorStop(0.25, '#0d1f45'); // high atmosphere
-  skyGrad.addColorStop(0.55, '#1a4080'); // sky
-  skyGrad.addColorStop(0.75, '#4a80c0'); // lower sky
-  skyGrad.addColorStop(0.88, '#a0c4e0'); // horizon
-  skyGrad.addColorStop(1,   '#d4e8c0');  // ground
-  sctx.fillStyle = skyGrad;
-  sctx.fillRect(0,0,W,H);
+  // ── ATMOSPHERE GRADIENT ──
+  const skyGrad = ctx.createLinearGradient(0,0,0,H);
+  skyGrad.addColorStop(0,   '#010308');  // deep space
+  skyGrad.addColorStop(0.18,'#04080f'); // space
+  skyGrad.addColorStop(0.28,'#060c1a'); // upper atm
+  skyGrad.addColorStop(0.44,'#0a1530'); // night sky
+  skyGrad.addColorStop(0.6, '#102060'); // twilight
+  skyGrad.addColorStop(0.76,'#1a3a80'); // low sky
+  skyGrad.addColorStop(0.88,'#2a6090'); // horizon
+  skyGrad.addColorStop(1,   '#1a3020'); // ground
+  ctx.fillStyle = skyGrad;
+  ctx.fillRect(0,0,W,H);
 
-  // Stars in space section
-  sctx.fillStyle='rgba(255,255,255,0.6)';
-  const starPositions=[[0.12,0.04],[0.28,0.02],[0.45,0.06],[0.62,0.03],[0.75,0.07],[0.18,0.09],[0.55,0.01],[0.85,0.05],[0.38,0.08],[0.92,0.02]];
-  starPositions.forEach(([fx,fy])=>{
-    sctx.beginPath();
-    sctx.arc(PAD_LEFT+fx*plotW, PAD_TOP+fy*plotH*0.3, 1.5, 0, Math.PI*2);
-    sctx.fill();
+  // stars in space zone
+  const starY = H*0.35;
+  ctx.fillStyle = 'rgba(200,224,255,.65)';
+  [[.09,.03],[.22,.08],[.39,.02],[.55,.11],[.71,.05],[.85,.09],[.17,.15],[.62,.14],[.92,.07],[.46,.18]].forEach(([fx,fy])=>{
+    const sy = fy * starY;
+    ctx.beginPath();ctx.arc(PL + fx*(W-PL-PR2), sy, 1.3, 0, Math.PI*2);ctx.fill();
   });
 
-  // Ground line
-  const groundY = logToY(0.0008, H, PAD_TOP, PAD_BOT);
-  sctx.fillStyle='#7a9a50';
-  sctx.fillRect(PAD_LEFT, groundY, plotW, H-groundY);
+  // ground band
+  const groundY = eToY(PAPER*0.4, H, PT, PB);
+  const gGrad = ctx.createLinearGradient(0, groundY, 0, H);
+  gGrad.addColorStop(0,'#1a3820');
+  gGrad.addColorStop(1,'#0d1a0a');
+  ctx.fillStyle = gGrad;
+  ctx.fillRect(0, groundY, W, H-groundY);
 
-  // Landmark horizontal lines & icons
-  LANDMARKS.forEach(lm => {
-    const y = logToY(lm.cmApprox, H, PAD_TOP, PAD_BOT);
-    if(y < PAD_TOP || y > H-PAD_BOT) return;
-
-    // Dashed line
-    sctx.strokeStyle='rgba(255,255,255,0.18)';
-    sctx.lineWidth=1;
-    sctx.setLineDash([4,4]);
-    sctx.beginPath();
-    sctx.moveTo(PAD_LEFT, y);
-    sctx.lineTo(W-PAD_RIGHT, y);
-    sctx.stroke();
-    sctx.setLineDash([]);
-
-    // Icon & label on left
-    sctx.font='13px DM Sans';
-    sctx.textAlign='right';
-    sctx.textBaseline='middle';
-    const isReached = thickness(folds) >= lm.cmApprox * 0.5;
-    sctx.fillStyle = isReached ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.35)';
-    sctx.fillText(lm.icon + ' ' + lm.label, PAD_LEFT - 4, y);
+  // ── LANDMARK LINES ──
+  LAYERS.forEach(lm => {
+    const y = eToY(lm.cm, H, PT, PB);
+    if(y < PT-5 || y > H-PB+5) return;
+    const reached = thick(folds) >= lm.cm * 0.6;
+    const alpha = reached ? 0.65 : 0.2;
+    ctx.strokeStyle = lm.color.replace(/[\d.]+\)$/, alpha+')');
+    ctx.lineWidth = reached ? 1 : 0.5;
+    ctx.setLineDash(reached ? [] : [3,4]);
+    ctx.beginPath();ctx.moveTo(PL, y);ctx.lineTo(W-PR2, y);ctx.stroke();
+    ctx.setLineDash([]);
+    // label
+    ctx.font = (reached ? 'bold ' : '') + '11px Space Mono, monospace';
+    ctx.textAlign = 'right';ctx.textBaseline = 'middle';
+    ctx.fillStyle = lm.color.replace(/[\d.]+\)$/, (reached ? .95 : .3)+')');
+    ctx.fillText(lm.icon + ' ' + lm.label, PL-6, y);
   });
 
-  // ── LINEAR growth bar (faint red) ──
-  const linCm = PAPER_CM + folds * PAPER_CM;
-  const linY  = logToY(linCm, H, PAD_TOP, PAD_BOT);
-  const linBaseY = logToY(PAPER_CM * 0.9, H, PAD_TOP, PAD_BOT);
-  const barX  = PAD_LEFT + plotW * 0.55;
-  const barW  = 28;
-
-  if(linY < linBaseY){
-    sctx.fillStyle='rgba(192,57,43,0.55)';
-    sctx.fillRect(barX, linY, barW, linBaseY-linY);
-    // Top glow
-    sctx.fillStyle='rgba(220,80,60,0.9)';
-    sctx.fillRect(barX, linY-2, barW, 4);
+  // ── LINEAR BAR ──
+  const linCm = PAPER * (1 + folds);
+  const linY = eToY(linCm, H, PT, PB);
+  const baseY = eToY(PAPER*0.6, H, PT, PB);
+  const barW = 24;
+  const lbX = PL + (W-PL-PR2)*0.55;
+  if(linY < baseY-2){
+    ctx.fillStyle = 'rgba(180,80,60,.45)';
+    ctx.fillRect(lbX, linY, barW, baseY-linY);
+    ctx.fillStyle = 'rgba(220,100,80,.9)';
+    ctx.fillRect(lbX, linY-2, barW, 4);
   }
 
-  // ── EXPONENTIAL growth bar (blue paper stack) ──
-  const expCm = thickness(folds);
-  const expY  = logToY(expCm, H, PAD_TOP, PAD_BOT);
-  const expBaseY = logToY(PAPER_CM * 0.9, H, PAD_TOP, PAD_BOT);
-  const expBarX = PAD_LEFT + plotW * 0.3;
-  const expBarW = 36;
+  // ── EXPONENTIAL BAR ──
+  const expCm = thick(folds);
+  const expY = eToY(expCm, H, PT, PB);
+  const ebX = PL + (W-PL-PR2)*0.28;
+  const ebW = 32;
 
-  if(expY < expBaseY){
-    // Gradient on the stack
-    const stackGrad = sctx.createLinearGradient(expBarX, expY, expBarX+expBarW, expY);
-    stackGrad.addColorStop(0,'rgba(30,80,180,0.9)');
-    stackGrad.addColorStop(0.5,'rgba(60,120,220,0.95)');
-    stackGrad.addColorStop(1,'rgba(30,80,180,0.7)');
-    sctx.fillStyle=stackGrad;
-    sctx.fillRect(expBarX, expY, expBarW, expBaseY-expY);
+  if(expY < baseY-2){
+    // layered gradient
+    const isMoon = folds >= 44;
+    const bGrad = ctx.createLinearGradient(ebX, expY, ebX+ebW, expY);
+    if(isMoon){
+      bGrad.addColorStop(0,'rgba(220,170,40,.9)');
+      bGrad.addColorStop(.5,'rgba(255,210,60,.95)');
+      bGrad.addColorStop(1,'rgba(200,150,30,.7)');
+    } else {
+      bGrad.addColorStop(0,'rgba(30,100,200,.88)');
+      bGrad.addColorStop(.5,'rgba(60,140,240,.95)');
+      bGrad.addColorStop(1,'rgba(30,100,200,.7)');
+    }
+    ctx.fillStyle = bGrad;
+    ctx.fillRect(ebX, expY, ebW, baseY-expY);
 
-    // Horizontal paper layer lines
-    const pixPerFold = (expBaseY - expY) / Math.max(folds, 1);
-    if(pixPerFold > 2){
-      sctx.strokeStyle='rgba(255,255,255,0.25)';
-      sctx.lineWidth=1;
+    // layer lines
+    const pxPerFold = (baseY-expY) / Math.max(folds,1);
+    if(pxPerFold > 2.5){
+      ctx.strokeStyle = 'rgba(255,255,255,.2)';
+      ctx.lineWidth = 0.6;
       for(let i=1; i<folds && i<60; i++){
-        const ly = expBaseY - i*pixPerFold;
+        const ly = baseY - i*pxPerFold;
         if(ly > expY+1){
-          sctx.beginPath();
-          sctx.moveTo(expBarX+1, ly);
-          sctx.lineTo(expBarX+expBarW-1, ly);
-          sctx.stroke();
+          ctx.beginPath();ctx.moveTo(ebX+1,ly);ctx.lineTo(ebX+ebW-1,ly);ctx.stroke();
         }
       }
     }
-
-    // Top bright cap
-    sctx.fillStyle='rgba(100,160,255,0.95)';
-    sctx.fillRect(expBarX, expY-3, expBarW, 5);
+    // cap glow
+    ctx.fillStyle = isMoon ? 'rgba(255,230,100,.9)' : 'rgba(100,180,255,.9)';
+    ctx.fillRect(ebX, expY-3, ebW, 5);
+    // value label
+    ctx.font = 'bold 10px Space Mono, monospace';
+    ctx.textAlign = 'center';ctx.textBaseline = 'bottom';
+    ctx.fillStyle = 'rgba(200,224,255,.95)';
+    ctx.fillText(fmt(expCm), ebX+ebW/2, expY-6);
   }
 
-  // ── HEIGHT LABEL on exp bar ──
-  if(expY < H-PAD_BOT-20){
-    sctx.font='bold 11px DM Mono, monospace';
-    sctx.textAlign='center';
-    sctx.textBaseline='bottom';
-    sctx.fillStyle='rgba(255,255,255,0.95)';
-    sctx.fillText(formatThick(expCm), expBarX + expBarW/2, expY-6);
-  }
-
-  // ── AXIS ticks (right side) ──
-  const axisX = PAD_LEFT + plotW + PAD_RIGHT - 14;
-  const tickLandmarks=[{cm:1,l:'1 cm'},{cm:100,l:'1 m'},{cm:1e5,l:'1 km'},{cm:1e8,l:'1000 km'},{cm:1e11,l:'1M km'}];
-  tickLandmarks.forEach(({cm,l})=>{
-    const y=logToY(cm,H,PAD_TOP,PAD_BOT);
-    if(y<PAD_TOP||y>H-PAD_BOT) return;
-    sctx.strokeStyle='rgba(255,255,255,0.3)';
-    sctx.lineWidth=1;
-    sctx.beginPath(); sctx.moveTo(axisX-4,y); sctx.lineTo(axisX,y); sctx.stroke();
-    sctx.font='9px DM Mono,monospace';
-    sctx.textAlign='right';
-    sctx.textBaseline='middle';
-    sctx.fillStyle='rgba(255,255,255,0.4)';
-    sctx.fillText(l,axisX-6,y);
+  // ── AXIS scale markers ──
+  const marks = [{cm:1,l:'1 cm'},{cm:100,l:'1 m'},{cm:1e5,l:'1 km'},{cm:1e8,l:'1000 km'},{cm:1e11,l:'1M km'}];
+  marks.forEach(({cm,l}) => {
+    const y = eToY(cm,H,PT,PB);
+    if(y<PT||y>H-PB) return;
+    ctx.strokeStyle='rgba(255,255,255,.2)';ctx.lineWidth=0.8;
+    ctx.beginPath();ctx.moveTo(W-PR2-10,y);ctx.lineTo(W-PR2,y);ctx.stroke();
+    ctx.font='8px Space Mono,monospace';
+    ctx.textAlign='right';ctx.textBaseline='middle';
+    ctx.fillStyle='rgba(255,255,255,.3)';
+    ctx.fillText(l,W-PR2-12,y);
   });
 
-  // ── BAR LABELS ──
-  sctx.font='bold 10px DM Sans';
-  sctx.textAlign='center';
-  sctx.textBaseline='top';
-  sctx.fillStyle='rgba(100,160,255,0.9)';
-  sctx.fillText('2ⁿ', expBarX+expBarW/2, expBaseY+4);
-  sctx.fillStyle='rgba(220,100,80,0.8)';
-  sctx.fillText('n×', barX+barW/2, expBaseY+4);
+  // bar labels
+  ctx.font = 'bold 9px Space Mono,monospace';
+  ctx.textAlign = 'center';ctx.textBaseline = 'top';
+  ctx.fillStyle = 'rgba(100,180,255,.8)';
+  ctx.fillText('2ⁿ', ebX+ebW/2, baseY+4);
+  ctx.fillStyle = 'rgba(220,100,80,.7)';
+  ctx.fillText('n×', lbX+barW/2, baseY+4);
 
-  // ── MOON (visible near top when high enough) ──
-  const moonAlpha = Math.min(1, Math.max(0, (folds-38)/8));
-  if(moonAlpha > 0){
-    const moonY = PAD_TOP + plotH * 0.05;
-    const moonX = PAD_LEFT + plotW * 0.75;
-    sctx.globalAlpha = moonAlpha;
-    sctx.beginPath();
-    sctx.arc(moonX, moonY, 22, 0, Math.PI*2);
-    sctx.fillStyle='#e8e0c8';
-    sctx.fill();
-    // Craters
-    [[6,8,5],[-8,-5,3],[10,-10,4]].forEach(([cx,cy,cr])=>{
-      sctx.beginPath();
-      sctx.arc(moonX+cx, moonY+cy, cr, 0, Math.PI*2);
-      sctx.fillStyle='rgba(180,170,150,0.5)';
-      sctx.fill();
+  // moon icon when near top
+  if(folds >= 42){
+    const moonAlpha = Math.min(1,(folds-42)/4);
+    const mY = PT + plotH * 0.05;
+    const mX = PL + (W-PL-PR2)*0.72;
+    ctx.globalAlpha = moonAlpha;
+    ctx.beginPath();ctx.arc(mX,mY,20,0,Math.PI*2);
+    ctx.fillStyle='#e8e0b8';ctx.fill();
+    [[5,6,4],[-7,-4,2.5],[9,-8,3]].forEach(([cx,cy,cr])=>{
+      ctx.beginPath();ctx.arc(mX+cx,mY+cy,cr,0,Math.PI*2);
+      ctx.fillStyle='rgba(180,170,140,.5)';ctx.fill();
     });
-    sctx.globalAlpha=1;
-  }
-
-  // ── EARTH (visible in lower-mid section) ──
-  const earthAlpha = Math.min(1, Math.max(0, (folds-35)/8));
-  if(earthAlpha > 0){
-    const eY = PAD_TOP + plotH * 0.28;
-    const eX = PAD_LEFT + plotW * 0.8;
-    sctx.globalAlpha = earthAlpha;
-    sctx.beginPath();
-    sctx.arc(eX, eY, 18, 0, Math.PI*2);
-    sctx.fillStyle='#1a5fa8';
-    sctx.fill();
-    // Continent patches
-    [[-4,-4,7,4],[3,2,5,3],[-8,5,4,2]].forEach(([cx,cy,w,h])=>{
-      sctx.beginPath();
-      sctx.ellipse(eX+cx, eY+cy, w, h, 0.3, 0, Math.PI*2);
-      sctx.fillStyle='#3a8a45';
-      sctx.fill();
-    });
-    sctx.globalAlpha=1;
-  }
-
-  // ── PLANE ──
-  const planeAlpha = Math.min(1, Math.max(0, (folds-27)/4));
-  if(planeAlpha > 0){
-    const pY = logToY(1070000, H, PAD_TOP, PAD_BOT);
-    const pX = PAD_LEFT + plotW * 0.7;
-    sctx.globalAlpha = planeAlpha * 0.9;
-    sctx.font='20px serif';
-    sctx.textAlign='center';
-    sctx.textBaseline='middle';
-    sctx.fillText('✈', pX, pY);
-    sctx.globalAlpha=1;
+    ctx.globalAlpha=1;
   }
 }
 
-// ═══════════════════════════════════════════════════════
-// FOLD ANIMATION CANVAS — shows paper physically folding
-// ═══════════════════════════════════════════════════════
-const foldCanvas = document.getElementById('fold-canvas');
-const fctx = foldCanvas.getContext('2d');
-
-function drawFoldAnim(n){
-  const W=foldCanvas.width, H=foldCanvas.height;
-  fctx.clearRect(0,0,W,H);
-  fctx.fillStyle='#f0ede8';
-  fctx.fillRect(0,0,W,H);
-
-  // Draw a simplified paper stack view
-  // Show up to 8 layers visible
-  const maxLayers = Math.min(n, 8);
-  const shownLayers = Math.pow(2, maxLayers);
-  const totalH = H - 20;
-  const layerH = Math.max(2, Math.min(14, totalH / shownLayers));
-  const paperW = 200;
-  const startX = (W-paperW)/2;
-  const stackH = layerH * shownLayers;
-  const startY = H - 10 - stackH;
-
-  for(let i=0; i<shownLayers; i++){
-    const y = startY + i*layerH;
-    const shade = 0.5 + (i/shownLayers)*0.5;
-    // Alternate light/dark to show layers
-    const isEven = i%2===0;
-    fctx.fillStyle = isEven
-      ? `rgba(44,95,158,${shade*0.85})`
-      : `rgba(60,120,200,${shade*0.6})`;
-    fctx.fillRect(startX, y, paperW, layerH);
-    if(layerH > 3){
-      fctx.strokeStyle='rgba(255,255,255,0.3)';
-      fctx.lineWidth=0.5;
-      fctx.beginPath();
-      fctx.moveTo(startX, y+layerH);
-      fctx.lineTo(startX+paperW, y+layerH);
-      fctx.stroke();
-    }
-  }
-
-  // Stack count label
-  if(n > 0){
-    fctx.fillStyle='#1a1814';
-    fctx.font='bold 11px DM Mono,monospace';
-    fctx.textAlign='center';
-    fctx.textBaseline='bottom';
-    fctx.fillText(`2${superStr(n)} = ${Math.pow(2,n).toLocaleString('en-IN')} layers`, W/2, H-2);
-  } else {
-    fctx.fillStyle='#9a958e';
-    fctx.font='11px DM Sans';
-    fctx.textAlign='center';
-    fctx.textBaseline='bottom';
-    fctx.fillText('1 layer · 0.001 cm thick', W/2, H-2);
-  }
-
-  // Width label
-  fctx.fillStyle='#9a958e';
-  fctx.font='9px DM Sans';
-  fctx.textAlign='center';
-  fctx.textBaseline='top';
-  const wLabel = n > 0 ? `width = original ÷ 2` : 'original width';
-  fctx.fillText('← ' + wLabel + ' →', W/2, 2);
-}
-
-// ═══════════════════════════════════════════════════════
-// UPDATE EVERYTHING
-// ═══════════════════════════════════════════════════════
+// ── STATE UPDATE ──────────────────────────────────────────
 function update(){
   const n = folds;
-  const expCm = thickness(n);
-  const linCm = PAPER_CM + n * PAPER_CM;
+  const expCm = thick(n);
+  const linCm = PAPER * (1 + n);
 
-  // Left panel
-  document.getElementById('fold-big').textContent = n;
-  document.getElementById('fold-sup').textContent = n;
-  document.getElementById('tc-exp').textContent = formatThick(expCm);
-  document.getElementById('tc-lin').textContent = formatThick(linCm);
-  const ratio = expCm / linCm;
-  document.getElementById('tc-ratio').textContent =
-    ratio < 10 ? `ratio: ${ratio.toFixed(1)}×`
-    : ratio < 1e6 ? `ratio: ${Math.round(ratio).toLocaleString('en-IN')}×`
-    : `ratio: ${ratio.toExponential(1)}×`;
+  // fold number
+  const num = document.getElementById('fh-num');
+  num.textContent = n;
+  num.className = 'fh-num' + (n >= 44 ? ' moon' : '');
+  document.getElementById('fh-sup').textContent = n;
 
-  // Formula
-  document.getElementById('formula-main').textContent =
-    `0.001 × 2${superStr(n)} = ${formatThick(expCm)}`;
-  document.getElementById('formula-sub').textContent =
-    n===0 ? '= 0.001 cm = starting paper'
-    : `= 0.001 × ${Math.pow(2, n).toLocaleString('en-IN')}`;
+  // metrics
+  document.getElementById('m-exp').textContent = fmt(expCm);
+  document.getElementById('m-lin').textContent = fmt(linCm);
+  const ratio = expCm/linCm;
+  document.getElementById('m-ratio').textContent =
+    'ratio: ' + (ratio < 1e6 ? Math.round(ratio).toLocaleString('en-IN') : ratio.toExponential(1)) + '×';
 
-  // Quick buttons
-  document.querySelectorAll('.qbtn').forEach(b => {
+  // formula
+  const strip = document.getElementById('formula-strip');
+  strip.textContent = `0.001 × 2${sup(n)} = ${fmt(expCm)}`;
+  strip.className = 'formula-strip' + (n >= 44 ? ' moon' : '');
+
+  // quick buttons
+  document.querySelectorAll('.qjump').forEach(b=>{
     b.classList.toggle('active', +b.dataset.n === n);
   });
 
-  // Milestone
-  const reached = [...LANDMARKS].reverse().find(lm => expCm >= lm.cmApprox * 0.5);
-  const next = LANDMARKS.find(lm => expCm < lm.cmApprox * 0.5);
-  const msCard = document.getElementById('milestone-card');
+  // milestone
+  const reached = [...LAYERS].reverse().find(lm => expCm >= lm.cm*0.6);
+  const ms = document.getElementById('milestone');
   if(reached){
-    msCard.className='milestone lit';
-    msCard.innerHTML=`<span class="ms-icon">${reached.icon}</span><strong>Reached:</strong> ${reached.label} — ${formatThick(expCm)}`;
+    ms.innerHTML = `<strong>Fold ${n}</strong> — Reached: ${reached.icon} ${reached.label}. Thickness = ${fmt(expCm)}.`;
+    if(n === 46) ms.innerHTML += ` <strong>🌙 Moon distance reached!</strong> Impossible to fold in reality, but the maths works.`;
   } else {
-    msCard.className='milestone';
-    msCard.innerHTML=`<span class="ms-icon">📄</span><strong>Start:</strong> Thickness of a sheet of paper — 0.001 cm`;
+    ms.innerHTML = `<strong>Fold 0</strong> — A single sheet of paper, 0.001 cm thick. 46 folds away from the Moon.`;
   }
 
-  // Scene tagline
-  const taglines = [
-    [0,9,'Fold away — it starts tiny...'],
-    [10,16,'You can measure this with a ruler'],
-    [17,19,'Taller than a person!'],
-    [20,25,'As tall as buildings!'],
-    [26,29,'Reaching toward the sky...'],
-    [30,39,'Higher than any plane flies!'],
-    [40,42,'Spanning continents!'],
-    [43,46,'Reaching the Moon! 🌙'],
-  ];
-  const tl = taglines.find(([lo,hi])=>n>=lo&&n<=hi);
-  document.getElementById('scene-tagline').textContent = tl ? tl[2] : '';
+  // header value
+  document.getElementById('rh-val').textContent = fmt(expCm);
 
-  drawFoldAnim(n);
-  drawScene();
+  draw();
 }
 
-// ═══════════════════════════════════════════════════════
-// EVENTS
-// ═══════════════════════════════════════════════════════
-document.getElementById('fold-slider').addEventListener('input', e => {
+// ── EVENTS ──────────────────────────────────────────────
+document.getElementById('fold-sl').addEventListener('input', e=>{
   folds = +e.target.value;
   update();
 });
-document.querySelectorAll('.qbtn').forEach(b => {
-  b.addEventListener('click', () => {
-    folds = +b.dataset.n;
-    document.getElementById('fold-slider').value = folds;
+document.querySelectorAll('.qjump').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    folds = +btn.dataset.n;
+    document.getElementById('fold-sl').value = folds;
     update();
   });
 });
 
-new ResizeObserver(()=>{
-  sctx.resetTransform();
-  sctx.scale(sPR,sPR);
-  resizeScene();
-}).observe(sceneCanvas.parentElement);
-
-resizeScene();
+new ResizeObserver(resizeCvs).observe(cvs.parentElement);
+resizeCvs();
 update();
 </script>
 </body>
