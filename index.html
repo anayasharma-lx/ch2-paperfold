@@ -9,252 +9,94 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --void:#04060a;
-  --deep:#080e18;
-  --space:#0d1520;
-  --nebula:#121d2e;
-  --hull:#1a2840;
-  --grid:#243350;
-  --line:#2e4268;
-  --star1:#6a9fd0;
-  --star2:#c8e0ff;
-  --blue:#4488dd;
-  --blue2:#66aaff;
-  --blue-glow:rgba(68,136,221,.2);
-  --cyan:#2adfc8;
-  --cyan-glow:rgba(42,223,200,.18);
-  --amber:#f5a623;
-  --amber-glow:rgba(245,166,35,.18);
-  --white:#e8f2ff;
-  --dim:#6a8aaa;
-  --dimmer:#3a5070;
-  --serif:'Instrument Serif',Georgia,serif;
-  --mono:'Space Mono',ui-monospace,monospace;
+  --void:#04060a;--deep:#080e18;--space:#0d1520;--nebula:#121d2e;
+  --hull:#1a2840;--grid:#243350;--line:#2e4268;
+  --star1:#6a9fd0;--star2:#c8e0ff;
+  --blue:#4488dd;--blue2:#66aaff;--blue-glow:rgba(68,136,221,.2);
+  --cyan:#2adfc8;--cyan-glow:rgba(42,223,200,.18);
+  --amber:#f5a623;--amber-glow:rgba(245,166,35,.18);
+  --white:#e8f2ff;--dim:#7a9abd;--dimmer:#5a7a9a;
+  --serif:'Instrument Serif',Georgia,serif;--mono:'Space Mono',ui-monospace,monospace;
 }
 html,body{width:100%;height:100%;overflow:hidden}
-body{
-  font-family:var(--mono);
-  background:var(--void);
-  color:var(--white);
-  -webkit-font-smoothing:antialiased;
-  display:flex;flex-direction:column;
-  position:fixed;inset:0;
-}
-
-/* star field */
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:
-    radial-gradient(1px 1px at 8% 12%, rgba(200,224,255,.7) 0%, transparent 100%),
-    radial-gradient(1px 1px at 23% 45%, rgba(200,224,255,.5) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 37% 8%, rgba(200,224,255,.8) 0%, transparent 100%),
-    radial-gradient(1px 1px at 52% 67%, rgba(200,224,255,.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 66% 23%, rgba(200,224,255,.6) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 78% 51%, rgba(200,224,255,.7) 0%, transparent 100%),
-    radial-gradient(1px 1px at 89% 15%, rgba(200,224,255,.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 14% 78%, rgba(200,224,255,.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 44% 88%, rgba(200,224,255,.6) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 93% 82%, rgba(200,224,255,.7) 0%, transparent 100%),
-    radial-gradient(1px 1px at 61% 4%, rgba(200,224,255,.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 3% 55%, rgba(200,224,255,.6) 0%, transparent 100%);
-  pointer-events:none;z-index:0;
-}
-
-/* scanlines */
-body::after{
-  content:'';position:fixed;inset:0;
-  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.06) 3px,rgba(0,0,0,.06) 4px);
-  pointer-events:none;z-index:1;
-}
-
-/* ── HEADER ── */
-.top{
-  position:relative;z-index:10;
-  display:flex;align-items:center;
-  border-bottom:1px solid var(--line);
-  background:var(--deep);
-  height:44px;flex-shrink:0;
-  padding:0 20px;gap:16px;
-}
-.top-badge{
-  display:flex;align-items:center;gap:7px;
-  font-size:9px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--dimmer);
-  border-right:1px solid var(--line);
-  padding-right:14px;
-}
-.tb-num{
-  width:18px;height:18px;border-radius:50%;
-  background:rgba(68,136,221,.25);border:1px solid var(--blue);
-  color:var(--blue2);font-size:9px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-}
-.top-title{font-family:var(--serif);font-size:16px;color:var(--white);flex:1;}
-.top-meta{font-size:9px;color:var(--dimmer);letter-spacing:.06em;display:flex;gap:14px}
+body{font-family:var(--mono);background:var(--void);color:var(--white);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;position:fixed;inset:0}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(1px 1px at 8% 12%,rgba(200,224,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 23% 45%,rgba(200,224,255,.5) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 37% 8%,rgba(200,224,255,.8) 0%,transparent 100%),radial-gradient(1px 1px at 52% 67%,rgba(200,224,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 66% 23%,rgba(200,224,255,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 78% 51%,rgba(200,224,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 89% 15%,rgba(200,224,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 14% 78%,rgba(200,224,255,.4) 0%,transparent 100%),radial-gradient(1px 1px at 44% 88%,rgba(200,224,255,.6) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 93% 82%,rgba(200,224,255,.7) 0%,transparent 100%),radial-gradient(1px 1px at 61% 4%,rgba(200,224,255,.5) 0%,transparent 100%),radial-gradient(1px 1px at 3% 55%,rgba(200,224,255,.6) 0%,transparent 100%);pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.06) 3px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:1}
+.top{position:relative;z-index:10;display:flex;align-items:center;border-bottom:1px solid var(--line);background:var(--deep);height:44px;flex-shrink:0;padding:0 20px;gap:16px}
+.top-badge{display:flex;align-items:center;gap:7px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dimmer);border-right:1px solid var(--line);padding-right:14px}
+.tb-num{width:18px;height:18px;border-radius:50%;background:rgba(68,136,221,.25);border:1px solid var(--blue);color:var(--blue2);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.top-title{font-family:var(--serif);font-size:16px;color:var(--white);flex:1}
+.top-meta{font-size:10px;color:var(--dimmer);letter-spacing:.06em;display:flex;gap:14px}
 .pulse{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:pulse 2.2s ease infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
-
-/* ── MAIN LAYOUT ── */
-.main{
-  flex:1;display:grid;
-  grid-template-columns:300px 1fr;
-  overflow:hidden;min-height:0;
-  position:relative;z-index:5;
-}
-
-/* ── LEFT ── */
-.left{
-  border-right:1px solid var(--line);
-  display:flex;flex-direction:column;
-  background:var(--deep);
-  overflow:hidden;
-}
-
-.l-section{
-  padding:14px 16px;
-  border-bottom:1px solid var(--line);
-  flex-shrink:0;
-}
-.l-label{
-  font-size:9px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--dimmer);margin-bottom:10px;
-}
-
-/* fold counter hero */
-.fold-hero{
-  text-align:center;
-  padding:16px 0 10px;
-}
-.fh-num{
-  font-size:72px;font-weight:700;
-  color:var(--blue2);
-  text-shadow:0 0 40px var(--blue-glow),0 0 80px rgba(68,136,221,.15);
-  line-height:1;
-  font-family:var(--mono);
-  transition:color .3s;
-}
+.main{flex:1;display:grid;grid-template-columns:300px 1fr;overflow:hidden;min-height:0;position:relative;z-index:5}
+.left{border-right:1px solid var(--line);display:flex;flex-direction:column;background:var(--deep);overflow:hidden}
+.l-section{padding:14px 16px;border-bottom:1px solid var(--line);flex-shrink:0}
+.l-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dimmer);margin-bottom:10px}
+.fold-hero{text-align:center;padding:16px 0 10px}
+.fh-num{font-size:72px;font-weight:700;color:var(--blue2);text-shadow:0 0 40px var(--blue-glow),0 0 80px rgba(68,136,221,.15);line-height:1;font-family:var(--mono);transition:color .3s}
 .fh-num.moon{color:var(--amber);text-shadow:0 0 40px var(--amber-glow)}
 .fh-sub{font-size:11px;color:var(--dim);margin-top:6px}
-
-/* slider */
 .slider-wrap{padding:4px 0 10px}
-input[type=range]{
-  width:100%;height:4px;
-  -webkit-appearance:none;
-  background:var(--grid);
-  border-radius:2px;outline:none;cursor:pointer;
-  margin-bottom:10px;
-}
-input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;
-  width:18px;height:18px;
-  border-radius:50%;
-  background:var(--blue);
-  box-shadow:0 0 14px var(--blue);
-  cursor:pointer;
-  transition:box-shadow .15s;
-}
+input[type=range]{width:100%;height:4px;-webkit-appearance:none;background:var(--grid);border-radius:2px;outline:none;cursor:pointer;margin-bottom:10px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--blue);box-shadow:0 0 14px var(--blue);cursor:pointer;transition:box-shadow .15s}
 input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 22px var(--blue),0 0 8px #fff}
-
-/* quick jump buttons */
 .quick-row{display:flex;gap:5px;flex-wrap:wrap}
-.qjump{
-  flex:1;min-width:36px;
-  padding:5px 2px;
-  background:var(--nebula);
-  border:1px solid var(--line);
-  border-radius:4px;
-  font-family:var(--mono);font-size:11px;font-weight:700;
-  color:var(--dim);cursor:pointer;
-  transition:all .14s;text-align:center;
-}
+.qjump{flex:1;min-width:36px;padding:5px 2px;background:var(--nebula);border:1px solid var(--line);border-radius:4px;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--dim);cursor:pointer;transition:all .14s;text-align:center}
 .qjump:hover{border-color:var(--blue);color:var(--blue2)}
 .qjump.active{background:rgba(68,136,221,.15);border-color:var(--blue);color:var(--blue2);box-shadow:0 0 10px var(--blue-glow)}
-
-/* metrics */
 .metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.metric{
-  background:var(--nebula);
-  border:1px solid var(--line);
-  border-radius:6px;
-  padding:9px 10px;
-}
-.m-label{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--dimmer);margin-bottom:4px}
+.metric{background:var(--nebula);border:1px solid var(--line);border-radius:6px;padding:9px 10px}
+.m-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dimmer);margin-bottom:4px}
 .m-val{font-size:14px;font-weight:700;color:var(--white);font-family:var(--mono);line-height:1.2;transition:color .3s}
-.m-val.exp{color:var(--blue2)}
-.m-val.lin{color:var(--dim)}
+.m-val.exp{color:var(--blue2)}.m-val.lin{color:var(--dim)}
 .m-ratio{grid-column:1/-1;text-align:center;font-size:10px;color:var(--dim);margin-top:2px}
-
-/* formula */
-.formula-strip{
-  background:rgba(68,136,221,.07);
-  border:1px solid rgba(68,136,221,.25);
-  border-radius:6px;
-  padding:10px 12px;
-  text-align:center;
-  font-family:var(--mono);
-  font-size:13px;
-  color:var(--blue2);
-  text-shadow:0 0 12px rgba(68,136,221,.5);
-  transition:all .3s;
-}
-.formula-strip.moon{
-  color:var(--amber);
-  text-shadow:0 0 12px var(--amber-glow);
-  border-color:rgba(245,166,35,.35);
-  background:rgba(245,166,35,.07);
-}
-
-/* milestone */
-.milestone{
-  padding:10px 12px;
-  font-size:11px;color:var(--dim);
-  line-height:1.6;
-  font-family:var(--serif);
-  font-style:italic;
-  flex:1;overflow-y:auto;
-}
-.milestone strong{
-  font-style:normal;font-family:var(--mono);font-size:10px;
-  color:var(--cyan);text-shadow:0 0 8px var(--cyan-glow);
-}
-
-/* ── RIGHT: ALTITUDE CANVAS ── */
-.right{
-  display:flex;flex-direction:column;
-  overflow:hidden;background:var(--void);
-}
-.r-header{
-  padding:11px 18px;
-  border-bottom:1px solid var(--line);
-  display:flex;align-items:center;gap:10px;
-  flex-shrink:0;background:var(--deep);
-}
-.rh-title{font-size:11px;color:var(--dim);font-style:italic;font-family:var(--serif);flex:1;}
+.formula-strip{background:rgba(68,136,221,.07);border:1px solid rgba(68,136,221,.25);border-radius:6px;padding:10px 12px;text-align:center;font-family:var(--mono);font-size:13px;color:var(--blue2);text-shadow:0 0 12px rgba(68,136,221,.5);transition:all .3s}
+.formula-strip.moon{color:var(--amber);text-shadow:0 0 12px var(--amber-glow);border-color:rgba(245,166,35,.35);background:rgba(245,166,35,.07)}
+.milestone{padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;font-family:var(--serif);font-style:italic;flex:1;overflow-y:auto}
+.milestone strong{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--cyan);text-shadow:0 0 8px var(--cyan-glow)}
+.right{display:flex;flex-direction:column;overflow:hidden;background:var(--void)}
+.r-header{padding:11px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;flex-shrink:0;background:var(--deep)}
+.rh-title{font-size:11px;color:var(--dim);font-style:italic;font-family:var(--serif);flex:1}
 .rh-val{font-family:var(--mono);font-size:11px;color:var(--dim)}
 .canvas-wrap{flex:1;overflow:hidden;position:relative}
 #scene{display:block;width:100%;height:100%}
-</style>
+
+/* ══ MOBILE ══ */
+@media(max-width:768px){
+  html,body{overflow:auto;height:auto}
+  body{position:static;display:flex;flex-direction:column;min-height:100dvh}
+  .top{height:auto;padding:8px 14px;flex-wrap:wrap;gap:6px}
+  .top-title{font-size:14px}
+  .top-meta{display:none}
+  .main{grid-template-columns:1fr}
+  .left{border-right:none;border-bottom:1px solid var(--line);max-height:none;overflow:visible}
+  .l-section{padding:12px 14px}
+  .fh-num{font-size:52px}
+  .fh-sub{font-size:11px}
+  .quick-row{flex-wrap:wrap;gap:4px}
+  .qjump{min-width:38px;font-size:12px;padding:5px 3px}
+  .metric-grid{grid-template-columns:1fr 1fr}
+  .m-val{font-size:13px}
+  .formula-strip{font-size:12px;padding:9px 12px}
+  .milestone{font-size:12px;padding:10px 14px}
+  .right{min-height:320px}
+  .r-header{padding:10px 14px}
+  .canvas-wrap{min-height:280px}
+}
+@media(max-width:480px){
+  .fh-num{font-size:40px}
+  .m-val{font-size:12px}
+  .formula-strip{font-size:11px}
+}</style>
 </head>
 <body>
-
-<!-- TOP -->
 <div class="top">
-  <div class="top-badge">
-    <div class="tb-num">2</div>
-    CH·02 · POWER PLAY
-  </div>
+  <div class="top-badge"><div class="tb-num">2</div>CH·02 · POWER PLAY</div>
   <div class="top-title">Paper Folding & Exponential Growth</div>
-  <div class="top-meta">
-    <span>GANITA PRAKASH GR·8</span>
-    <span style="display:flex;align-items:center;gap:5px"><span class="pulse"></span>LIVE</span>
-  </div>
+  <div class="top-meta"><span>GANITA PRAKASH GR·8</span><span style="display:flex;align-items:center;gap:5px"><span class="pulse"></span>LIVE</span></div>
 </div>
-
-<!-- MAIN -->
 <div class="main">
-
-  <!-- LEFT -->
   <div class="left">
     <div class="l-section">
       <div class="l-label">Folds</div>
@@ -274,309 +116,154 @@ input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 22px var(--blue),0 
         </div>
       </div>
     </div>
-
     <div class="l-section">
       <div class="l-label">Thickness</div>
       <div class="metric-grid">
-        <div class="metric">
-          <div class="m-label">Exponential 2ⁿ</div>
-          <div class="m-val exp" id="m-exp">0.001 cm</div>
-        </div>
-        <div class="metric">
-          <div class="m-label">Linear ×n</div>
-          <div class="m-val lin" id="m-lin">0.001 cm</div>
-        </div>
+        <div class="metric"><div class="m-label">Exponential 2ⁿ</div><div class="m-val exp" id="m-exp">0.001 cm</div></div>
+        <div class="metric"><div class="m-label">Linear ×n</div><div class="m-val lin" id="m-lin">0.001 cm</div></div>
         <div class="m-ratio" id="m-ratio">ratio: 1×</div>
       </div>
     </div>
-
-    <div class="l-section">
-      <div class="formula-strip" id="formula-strip">0.001 × 2⁰ = 0.001 cm</div>
-    </div>
-
-    <div class="milestone" id="milestone">
-      <strong>Fold 0</strong> — A single sheet of paper, 0.001 cm thick. 46 folds away from the Moon.
-    </div>
+    <div class="l-section"><div class="formula-strip" id="formula-strip">0.001 × 2⁰ = 0.001 cm</div></div>
+    <div class="milestone" id="milestone"><strong>Fold 0</strong> — A single sheet of paper, 0.001 cm thick. 46 folds away from the Moon.</div>
   </div>
-
-  <!-- RIGHT -->
   <div class="right">
     <div class="r-header">
       <div class="rh-title">Altitude journey — log scale, from paper to Moon</div>
       <div class="rh-val" id="rh-val">drag slider to begin</div>
     </div>
-    <div class="canvas-wrap">
-      <canvas id="scene"></canvas>
-    </div>
+    <div class="canvas-wrap"><canvas id="scene"></canvas></div>
   </div>
-
 </div>
-
 <script>
-const PAPER = 0.001;
-
-function sup(n){
-  return String(n).split('').map(c=>('⁰¹²³⁴⁵⁶⁷⁸⁹'[+c]||c)).join('');
-}
-
-function thick(n){ return PAPER * Math.pow(2, n); }
-
+const PAPER=0.001;
+function sup(n){return String(n).split('').map(c=>('⁰¹²³⁴⁵⁶⁷⁸⁹'[+c]||c)).join('')}
+function thick(n){return PAPER*Math.pow(2,n)}
 function fmt(cm){
-  if(cm < 0.01)   return (cm*10).toFixed(4)+' mm';
-  if(cm < 1)      return cm.toFixed(3)+' cm';
-  if(cm < 100)    return cm.toFixed(2)+' cm';
-  if(cm < 1e5)    return (cm/100).toFixed(1)+' m';
-  if(cm < 1e8)    return (cm/1e5).toFixed(0)+' km';
-  if(cm < 1e11)   return (cm/1e8).toFixed(1)+'×10⁸ km';
-  return (cm/1e10).toFixed(1)+'×10¹⁰ km';
+  if(cm<0.01)return(cm*10).toFixed(4)+' mm';
+  if(cm<1)return cm.toFixed(3)+' cm';
+  if(cm<100)return cm.toFixed(2)+' cm';
+  if(cm<1e5)return(cm/100).toFixed(1)+' m';
+  if(cm<1e8)return(cm/1e5).toFixed(0)+' km';
+  if(cm<1e11)return(cm/1e8).toFixed(1)+'×10⁸ km';
+  return(cm/1e10).toFixed(1)+'×10¹⁰ km';
 }
-
-const LAYERS = [
-  {cm:0.001,   label:'Paper',           icon:'📄', color:'rgba(100,160,220,.9)'},
-  {cm:0.016,   label:'1 mm',            icon:'📏', color:'rgba(100,200,180,.9)'},
-  {cm:1,       label:'~Fingertip',      icon:'👆', color:'rgba(120,180,100,.9)'},
-  {cm:16,      label:'Textbook',        icon:'📚', color:'rgba(180,160,80,.9)'},
-  {cm:130,     label:'Door height',     icon:'🚪', color:'rgba(200,130,60,.9)'},
-  {cm:1000,    label:'10-storey bldg',  icon:'🏢', color:'rgba(200,80,80,.9)'},
-  {cm:88000,   label:'Burj Khalifa',    icon:'🏗️', color:'rgba(170,80,200,.9)'},
-  {cm:1.1e6,   label:'Cruising altitude',icon:'✈️', color:'rgba(100,140,220,.9)'},
-  {cm:1.28e9,  label:'Earth diameter',  icon:'🌍', color:'rgba(60,140,200,.9)'},
-  {cm:3.84e10, label:'Moon distance',   icon:'🌙', color:'rgba(240,200,80,.9)'},
+const LAYERS=[
+  {cm:0.001,label:'Paper',icon:'📄',color:'rgba(100,160,220,.9)'},
+  {cm:0.016,label:'1 mm',icon:'📏',color:'rgba(100,200,180,.9)'},
+  {cm:1,label:'~Fingertip',icon:'👆',color:'rgba(120,180,100,.9)'},
+  {cm:16,label:'Textbook',icon:'📚',color:'rgba(180,160,80,.9)'},
+  {cm:130,label:'Door height',icon:'🚪',color:'rgba(200,130,60,.9)'},
+  {cm:1000,label:'10-storey bldg',icon:'🏢',color:'rgba(200,80,80,.9)'},
+  {cm:88000,label:'Burj Khalifa',icon:'🏗️',color:'rgba(170,80,200,.9)'},
+  {cm:1.1e6,label:'Cruising altitude',icon:'✈️',color:'rgba(100,140,220,.9)'},
+  {cm:1.28e9,label:'Earth diameter',icon:'🌍',color:'rgba(60,140,200,.9)'},
+  {cm:3.84e10,label:'Moon distance',icon:'🌙',color:'rgba(240,200,80,.9)'},
 ];
-
-const LOG_MIN = Math.log2(PAPER * 0.5);
-const LOG_MAX = Math.log2(4.5e10);
-
-let folds = 0;
-const cvs = document.getElementById('scene');
-const ctx = cvs.getContext('2d');
-const PR = Math.min(window.devicePixelRatio||1, 2);
-
+const LOG_MIN=Math.log2(PAPER*0.5),LOG_MAX=Math.log2(4.5e10);
+let folds=0;
+const cvs=document.getElementById('scene'),ctx=cvs.getContext('2d');
+const PR=Math.min(window.devicePixelRatio||1,2);
 function resizeCvs(){
-  const wrap = cvs.parentElement;
-  cvs.width = wrap.clientWidth * PR;
-  cvs.height = wrap.clientHeight * PR;
-  cvs.style.width = wrap.clientWidth + 'px';
-  cvs.style.height = wrap.clientHeight + 'px';
-  ctx.resetTransform();
-  ctx.scale(PR, PR);
-  draw();
+  const wrap=cvs.parentElement;
+  cvs.width=wrap.clientWidth*PR;cvs.height=wrap.clientHeight*PR;
+  cvs.style.width=wrap.clientWidth+'px';cvs.style.height=wrap.clientHeight+'px';
+  ctx.resetTransform();ctx.scale(PR,PR);draw();
 }
-
-function eToY(cm, H, pT, pB){
-  const t = (Math.log2(Math.max(cm, 1e-5)) - LOG_MIN) / (LOG_MAX - LOG_MIN);
-  return pT + (1-t) * (H - pT - pB);
+function eToY(cm,H,pT,pB){
+  const t=(Math.log2(Math.max(cm,1e-5))-LOG_MIN)/(LOG_MAX-LOG_MIN);
+  return pT+(1-t)*(H-pT-pB);
 }
-
 function draw(){
-  const W = cvs.clientWidth, H = cvs.clientHeight;
+  const W=cvs.clientWidth,H=cvs.clientHeight;
   ctx.clearRect(0,0,W,H);
-
-  const PT=24, PB=30, PL=130, PR2=18;
-  const plotH = H-PT-PB;
-
-  // ── ATMOSPHERE GRADIENT ──
-  const skyGrad = ctx.createLinearGradient(0,0,0,H);
-  skyGrad.addColorStop(0,   '#010308');  // deep space
-  skyGrad.addColorStop(0.18,'#04080f'); // space
-  skyGrad.addColorStop(0.28,'#060c1a'); // upper atm
-  skyGrad.addColorStop(0.44,'#0a1530'); // night sky
-  skyGrad.addColorStop(0.6, '#102060'); // twilight
-  skyGrad.addColorStop(0.76,'#1a3a80'); // low sky
-  skyGrad.addColorStop(0.88,'#2a6090'); // horizon
-  skyGrad.addColorStop(1,   '#1a3020'); // ground
-  ctx.fillStyle = skyGrad;
-  ctx.fillRect(0,0,W,H);
-
-  // stars in space zone
-  const starY = H*0.35;
-  ctx.fillStyle = 'rgba(200,224,255,.65)';
+  const PT=24,PB=30,PL=130,PR2=18,plotH=H-PT-PB;
+  const skyGrad=ctx.createLinearGradient(0,0,0,H);
+  skyGrad.addColorStop(0,'#010308');skyGrad.addColorStop(.18,'#04080f');
+  skyGrad.addColorStop(.28,'#060c1a');skyGrad.addColorStop(.44,'#0a1530');
+  skyGrad.addColorStop(.6,'#102060');skyGrad.addColorStop(.76,'#1a3a80');
+  skyGrad.addColorStop(.88,'#2a6090');skyGrad.addColorStop(1,'#1a3020');
+  ctx.fillStyle=skyGrad;ctx.fillRect(0,0,W,H);
+  const starY=H*0.35;
+  ctx.fillStyle='rgba(200,224,255,.65)';
   [[.09,.03],[.22,.08],[.39,.02],[.55,.11],[.71,.05],[.85,.09],[.17,.15],[.62,.14],[.92,.07],[.46,.18]].forEach(([fx,fy])=>{
-    const sy = fy * starY;
-    ctx.beginPath();ctx.arc(PL + fx*(W-PL-PR2), sy, 1.3, 0, Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(PL+fx*(W-PL-PR2),fy*starY,1.3,0,Math.PI*2);ctx.fill();
   });
-
-  // ground band
-  const groundY = eToY(PAPER*0.4, H, PT, PB);
-  const gGrad = ctx.createLinearGradient(0, groundY, 0, H);
-  gGrad.addColorStop(0,'#1a3820');
-  gGrad.addColorStop(1,'#0d1a0a');
-  ctx.fillStyle = gGrad;
-  ctx.fillRect(0, groundY, W, H-groundY);
-
-  // ── LANDMARK LINES ──
-  LAYERS.forEach(lm => {
-    const y = eToY(lm.cm, H, PT, PB);
-    if(y < PT-5 || y > H-PB+5) return;
-    const reached = thick(folds) >= lm.cm * 0.6;
-    const alpha = reached ? 0.65 : 0.2;
-    ctx.strokeStyle = lm.color.replace(/[\d.]+\)$/, alpha+')');
-    ctx.lineWidth = reached ? 1 : 0.5;
-    ctx.setLineDash(reached ? [] : [3,4]);
-    ctx.beginPath();ctx.moveTo(PL, y);ctx.lineTo(W-PR2, y);ctx.stroke();
-    ctx.setLineDash([]);
-    // label
-    ctx.font = (reached ? 'bold ' : '') + '11px Space Mono, monospace';
-    ctx.textAlign = 'right';ctx.textBaseline = 'middle';
-    ctx.fillStyle = lm.color.replace(/[\d.]+\)$/, (reached ? .95 : .3)+')');
-    ctx.fillText(lm.icon + ' ' + lm.label, PL-6, y);
-  });
-
-  // ── LINEAR BAR ──
-  const linCm = PAPER * (1 + folds);
-  const linY = eToY(linCm, H, PT, PB);
-  const baseY = eToY(PAPER*0.6, H, PT, PB);
-  const barW = 24;
-  const lbX = PL + (W-PL-PR2)*0.55;
-  if(linY < baseY-2){
-    ctx.fillStyle = 'rgba(180,80,60,.45)';
-    ctx.fillRect(lbX, linY, barW, baseY-linY);
-    ctx.fillStyle = 'rgba(220,100,80,.9)';
-    ctx.fillRect(lbX, linY-2, barW, 4);
-  }
-
-  // ── EXPONENTIAL BAR ──
-  const expCm = thick(folds);
-  const expY = eToY(expCm, H, PT, PB);
-  const ebX = PL + (W-PL-PR2)*0.28;
-  const ebW = 32;
-
-  if(expY < baseY-2){
-    // layered gradient
-    const isMoon = folds >= 44;
-    const bGrad = ctx.createLinearGradient(ebX, expY, ebX+ebW, expY);
-    if(isMoon){
-      bGrad.addColorStop(0,'rgba(220,170,40,.9)');
-      bGrad.addColorStop(.5,'rgba(255,210,60,.95)');
-      bGrad.addColorStop(1,'rgba(200,150,30,.7)');
-    } else {
-      bGrad.addColorStop(0,'rgba(30,100,200,.88)');
-      bGrad.addColorStop(.5,'rgba(60,140,240,.95)');
-      bGrad.addColorStop(1,'rgba(30,100,200,.7)');
-    }
-    ctx.fillStyle = bGrad;
-    ctx.fillRect(ebX, expY, ebW, baseY-expY);
-
-    // layer lines
-    const pxPerFold = (baseY-expY) / Math.max(folds,1);
-    if(pxPerFold > 2.5){
-      ctx.strokeStyle = 'rgba(255,255,255,.2)';
-      ctx.lineWidth = 0.6;
-      for(let i=1; i<folds && i<60; i++){
-        const ly = baseY - i*pxPerFold;
-        if(ly > expY+1){
-          ctx.beginPath();ctx.moveTo(ebX+1,ly);ctx.lineTo(ebX+ebW-1,ly);ctx.stroke();
-        }
-      }
-    }
-    // cap glow
-    ctx.fillStyle = isMoon ? 'rgba(255,230,100,.9)' : 'rgba(100,180,255,.9)';
-    ctx.fillRect(ebX, expY-3, ebW, 5);
-    // value label
-    ctx.font = 'bold 10px Space Mono, monospace';
-    ctx.textAlign = 'center';ctx.textBaseline = 'bottom';
-    ctx.fillStyle = 'rgba(200,224,255,.95)';
-    ctx.fillText(fmt(expCm), ebX+ebW/2, expY-6);
-  }
-
-  // ── AXIS scale markers ──
-  const marks = [{cm:1,l:'1 cm'},{cm:100,l:'1 m'},{cm:1e5,l:'1 km'},{cm:1e8,l:'1000 km'},{cm:1e11,l:'1M km'}];
-  marks.forEach(({cm,l}) => {
-    const y = eToY(cm,H,PT,PB);
-    if(y<PT||y>H-PB) return;
-    ctx.strokeStyle='rgba(255,255,255,.2)';ctx.lineWidth=0.8;
-    ctx.beginPath();ctx.moveTo(W-PR2-10,y);ctx.lineTo(W-PR2,y);ctx.stroke();
-    ctx.font='8px Space Mono,monospace';
+  const groundY=eToY(PAPER*0.4,H,PT,PB);
+  const gGrad=ctx.createLinearGradient(0,groundY,0,H);
+  gGrad.addColorStop(0,'#1a3820');gGrad.addColorStop(1,'#0d1a0a');
+  ctx.fillStyle=gGrad;ctx.fillRect(0,groundY,W,H-groundY);
+  LAYERS.forEach(lm=>{
+    const y=eToY(lm.cm,H,PT,PB);if(y<PT-5||y>H-PB+5)return;
+    const reached=thick(folds)>=lm.cm*0.6,alpha=reached?.65:.2;
+    ctx.strokeStyle=lm.color.replace(/[\d.]+\)$/,alpha+')');ctx.lineWidth=reached?1:.5;
+    ctx.setLineDash(reached?[]:[3,4]);ctx.beginPath();ctx.moveTo(PL,y);ctx.lineTo(W-PR2,y);ctx.stroke();ctx.setLineDash([]);
+    ctx.font=(reached?'bold ':'')+' 11px Space Mono,monospace';
     ctx.textAlign='right';ctx.textBaseline='middle';
-    ctx.fillStyle='rgba(255,255,255,.3)';
-    ctx.fillText(l,W-PR2-12,y);
+    ctx.fillStyle=lm.color.replace(/[\d.]+\)$/,(reached?.95:.3)+')');
+    ctx.fillText(lm.icon+' '+lm.label,PL-6,y);
   });
-
-  // bar labels
-  ctx.font = 'bold 9px Space Mono,monospace';
-  ctx.textAlign = 'center';ctx.textBaseline = 'top';
-  ctx.fillStyle = 'rgba(100,180,255,.8)';
-  ctx.fillText('2ⁿ', ebX+ebW/2, baseY+4);
-  ctx.fillStyle = 'rgba(220,100,80,.7)';
-  ctx.fillText('n×', lbX+barW/2, baseY+4);
-
-  // moon icon when near top
-  if(folds >= 42){
-    const moonAlpha = Math.min(1,(folds-42)/4);
-    const mY = PT + plotH * 0.05;
-    const mX = PL + (W-PL-PR2)*0.72;
-    ctx.globalAlpha = moonAlpha;
-    ctx.beginPath();ctx.arc(mX,mY,20,0,Math.PI*2);
-    ctx.fillStyle='#e8e0b8';ctx.fill();
-    [[5,6,4],[-7,-4,2.5],[9,-8,3]].forEach(([cx,cy,cr])=>{
-      ctx.beginPath();ctx.arc(mX+cx,mY+cy,cr,0,Math.PI*2);
-      ctx.fillStyle='rgba(180,170,140,.5)';ctx.fill();
-    });
+  const linCm=PAPER*(1+folds),linY=eToY(linCm,H,PT,PB),baseY=eToY(PAPER*0.6,H,PT,PB);
+  const barW=24,lbX=PL+(W-PL-PR2)*0.55;
+  if(linY<baseY-2){
+    ctx.fillStyle='rgba(180,80,60,.45)';ctx.fillRect(lbX,linY,barW,baseY-linY);
+    ctx.fillStyle='rgba(220,100,80,.9)';ctx.fillRect(lbX,linY-2,barW,4);
+  }
+  const expCm=thick(folds),expY=eToY(expCm,H,PT,PB),ebX=PL+(W-PL-PR2)*0.28,ebW=32;
+  if(expY<baseY-2){
+    const isMoon=folds>=44;
+    const bGrad=ctx.createLinearGradient(ebX,expY,ebX+ebW,expY);
+    if(isMoon){bGrad.addColorStop(0,'rgba(220,170,40,.9)');bGrad.addColorStop(.5,'rgba(255,210,60,.95)');bGrad.addColorStop(1,'rgba(200,150,30,.7)');}
+    else{bGrad.addColorStop(0,'rgba(30,100,200,.88)');bGrad.addColorStop(.5,'rgba(60,140,240,.95)');bGrad.addColorStop(1,'rgba(30,100,200,.7)');}
+    ctx.fillStyle=bGrad;ctx.fillRect(ebX,expY,ebW,baseY-expY);
+    const pxPerFold=(baseY-expY)/Math.max(folds,1);
+    if(pxPerFold>2.5){
+      ctx.strokeStyle='rgba(255,255,255,.2)';ctx.lineWidth=0.6;
+      for(let i=1;i<folds&&i<60;i++){const ly=baseY-i*pxPerFold;if(ly>expY+1){ctx.beginPath();ctx.moveTo(ebX+1,ly);ctx.lineTo(ebX+ebW-1,ly);ctx.stroke();}}
+    }
+    ctx.fillStyle=isMoon?'rgba(255,230,100,.9)':'rgba(100,180,255,.9)';ctx.fillRect(ebX,expY-3,ebW,5);
+    ctx.font='bold 10px Space Mono,monospace';ctx.textAlign='center';ctx.textBaseline='bottom';
+    ctx.fillStyle='rgba(200,224,255,.95)';ctx.fillText(fmt(expCm),ebX+ebW/2,expY-6);
+  }
+  const marks=[{cm:1,l:'1 cm'},{cm:100,l:'1 m'},{cm:1e5,l:'1 km'},{cm:1e8,l:'1000 km'},{cm:1e11,l:'1M km'}];
+  marks.forEach(({cm,l})=>{
+    const y=eToY(cm,H,PT,PB);if(y<PT||y>H-PB)return;
+    ctx.strokeStyle='rgba(255,255,255,.2)';ctx.lineWidth=0.8;ctx.beginPath();ctx.moveTo(W-PR2-10,y);ctx.lineTo(W-PR2,y);ctx.stroke();
+    ctx.font='8px Space Mono,monospace';ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillStyle='rgba(255,255,255,.3)';ctx.fillText(l,W-PR2-12,y);
+  });
+  ctx.font='bold 9px Space Mono,monospace';ctx.textAlign='center';ctx.textBaseline='top';
+  ctx.fillStyle='rgba(100,180,255,.8)';ctx.fillText('2ⁿ',ebX+ebW/2,baseY+4);
+  ctx.fillStyle='rgba(220,100,80,.7)';ctx.fillText('n×',lbX+barW/2,baseY+4);
+  if(folds>=42){
+    const moonAlpha=Math.min(1,(folds-42)/4),mY=PT+plotH*0.05,mX=PL+(W-PL-PR2)*0.72;
+    ctx.globalAlpha=moonAlpha;ctx.beginPath();ctx.arc(mX,mY,20,0,Math.PI*2);ctx.fillStyle='#e8e0b8';ctx.fill();
+    [[5,6,4],[-7,-4,2.5],[9,-8,3]].forEach(([cx,cy,cr])=>{ctx.beginPath();ctx.arc(mX+cx,mY+cy,cr,0,Math.PI*2);ctx.fillStyle='rgba(180,170,140,.5)';ctx.fill();});
     ctx.globalAlpha=1;
   }
 }
-
-// ── STATE UPDATE ──────────────────────────────────────────
 function update(){
-  const n = folds;
-  const expCm = thick(n);
-  const linCm = PAPER * (1 + n);
-
-  // fold number
-  const num = document.getElementById('fh-num');
-  num.textContent = n;
-  num.className = 'fh-num' + (n >= 44 ? ' moon' : '');
-  document.getElementById('fh-sup').textContent = n;
-
-  // metrics
-  document.getElementById('m-exp').textContent = fmt(expCm);
-  document.getElementById('m-lin').textContent = fmt(linCm);
-  const ratio = expCm/linCm;
-  document.getElementById('m-ratio').textContent =
-    'ratio: ' + (ratio < 1e6 ? Math.round(ratio).toLocaleString('en-IN') : ratio.toExponential(1)) + '×';
-
-  // formula
-  const strip = document.getElementById('formula-strip');
-  strip.textContent = `0.001 × 2${sup(n)} = ${fmt(expCm)}`;
-  strip.className = 'formula-strip' + (n >= 44 ? ' moon' : '');
-
-  // quick buttons
-  document.querySelectorAll('.qjump').forEach(b=>{
-    b.classList.toggle('active', +b.dataset.n === n);
-  });
-
-  // milestone
-  const reached = [...LAYERS].reverse().find(lm => expCm >= lm.cm*0.6);
-  const ms = document.getElementById('milestone');
+  const n=folds,expCm=thick(n),linCm=PAPER*(1+n);
+  const num=document.getElementById('fh-num');num.textContent=n;num.className='fh-num'+(n>=44?' moon':'');
+  document.getElementById('fh-sup').textContent=n;
+  document.getElementById('m-exp').textContent=fmt(expCm);
+  document.getElementById('m-lin').textContent=fmt(linCm);
+  const ratio=expCm/linCm;
+  document.getElementById('m-ratio').textContent='ratio: '+(ratio<1e6?Math.round(ratio).toLocaleString('en-IN'):ratio.toExponential(1))+'×';
+  const strip=document.getElementById('formula-strip');
+  strip.textContent='0.001 × 2'+sup(n)+' = '+fmt(expCm);strip.className='formula-strip'+(n>=44?' moon':'');
+  document.querySelectorAll('.qjump').forEach(b=>b.classList.toggle('active',+b.dataset.n===n));
+  const reached=[...LAYERS].reverse().find(lm=>expCm>=lm.cm*0.6);
+  const ms=document.getElementById('milestone');
   if(reached){
-    ms.innerHTML = `<strong>Fold ${n}</strong> — Reached: ${reached.icon} ${reached.label}. Thickness = ${fmt(expCm)}.`;
-    if(n === 46) ms.innerHTML += ` <strong>🌙 Moon distance reached!</strong> Impossible to fold in reality, but the maths works.`;
-  } else {
-    ms.innerHTML = `<strong>Fold 0</strong> — A single sheet of paper, 0.001 cm thick. 46 folds away from the Moon.`;
-  }
-
-  // header value
-  document.getElementById('rh-val').textContent = fmt(expCm);
-
-  draw();
+    ms.innerHTML='<strong>Fold '+n+'</strong> — Reached: '+reached.icon+' '+reached.label+'. Thickness = '+fmt(expCm)+'.';
+    if(n===46)ms.innerHTML+=' <strong>🌙 Moon distance reached!</strong>';
+  } else ms.innerHTML='<strong>Fold 0</strong> — A single sheet of paper, 0.001 cm thick. 46 folds away from the Moon.';
+  document.getElementById('rh-val').textContent=fmt(expCm);draw();
 }
-
-// ── EVENTS ──────────────────────────────────────────────
-document.getElementById('fold-sl').addEventListener('input', e=>{
-  folds = +e.target.value;
-  update();
-});
-document.querySelectorAll('.qjump').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    folds = +btn.dataset.n;
-    document.getElementById('fold-sl').value = folds;
-    update();
-  });
-});
-
+document.getElementById('fold-sl').addEventListener('input',e=>{folds=+e.target.value;update();});
+document.querySelectorAll('.qjump').forEach(btn=>btn.addEventListener('click',()=>{folds=+btn.dataset.n;document.getElementById('fold-sl').value=folds;update();}));
 new ResizeObserver(resizeCvs).observe(cvs.parentElement);
-resizeCvs();
-update();
+resizeCvs();update();
 </script>
 </body>
 </html>
